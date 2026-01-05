@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import ProductInfo from "../components/ProductInfo";
 import ProductAccordion from "../components/ProductAccordion";
 import Rating from "../components/Rating";
+import arrowIcon from "../icons/arrow.svg";
 
 export type Review = {
     rating: number;
@@ -69,9 +70,10 @@ export default function ProductDetails() {
             {/* Back */}
             <button
                 onClick={() => navigate(-1)}
-                className="mb-6 text-sm text-gray-500 hover:text-black"
+                className="flex items-center gap-2 text-sm text-gray-500 hover:text-black mb-5"
             >
-                ← Back to Products
+                <img src={arrowIcon} alt="back" className="h-4 w-4" />
+                Back to Products
             </button>
 
             {/* Top Section */}

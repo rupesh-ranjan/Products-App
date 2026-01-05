@@ -6,6 +6,8 @@ import {
     type Product,
     type Category,
 } from "../api/products.api";
+import searchIcon from "../icons/search.svg";
+import settingsIcon from "../icons/settings.svg";
 
 export default function Products() {
     const [products, setProducts] = useState<Product[]>([]);
@@ -73,27 +75,43 @@ export default function Products() {
             {/* Filters */}
             <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
                 {/* Search */}
-                <input
-                    type="text"
-                    placeholder="Search products..."
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    className="flex-1 h-11 rounded-lg border border-gray-200 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-black/10"
-                />
+                <div className="relative flex-1">
+                    <img
+                        src={searchIcon}
+                        alt="search"
+                        className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 opacity-50"
+                    />
+                    <input
+                        type="text"
+                        placeholder="Search products..."
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        className="w-full h-11 pl-10 pr-4 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-black/10"
+                    />
+                </div>
 
                 {/* Category */}
-                <select
-                    value={selectedCategory}
-                    onChange={(e) => setSelectedCategory(e.target.value)}
-                    className="h-11 rounded-lg border border-gray-200 px-3 text-sm"
-                >
-                    <option value="all">All Categories</option>
-                    {categories.map((category) => (
-                        <option key={category.slug} value={category.slug}>
-                            {category.name}
+                <div className="flex items-center rounded-lg h-11 gap-2 border border-gray-200 px-4">
+                    <img
+                        src={settingsIcon}
+                        alt="categories"
+                        className="h-4 w-4 opacity-60"
+                    />
+                    <select
+                        value={selectedCategory}
+                        onChange={(e) => setSelectedCategory(e.target.value)}
+                        className="w-full bg-transparent outline-none px-3 text-sm cursor-pointer"
+                    >
+                        <option value="all" className="flex-1">
+                            All Categories
                         </option>
-                    ))}
-                </select>
+                        {categories.map((category) => (
+                            <option key={category.slug} value={category.slug}>
+                                {category.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
 
                 {/* Sort */}
                 <select

@@ -1,4 +1,8 @@
 import Rating from "./Rating";
+import checkIcon from "../icons/check.svg";
+import boxIcon from "../icons/box.svg";
+import truckIcon from "../icons/truck.svg";
+import secureIcon from "../icons/secure-payments.svg";
 import { type Product } from "../pages/ProductDetails";
 
 type Props = {
@@ -13,7 +17,9 @@ export default function ProductInfo({ product }: Props) {
                 <span className="px-2 py-1 text-xs rounded bg-gray-100 capitalize">
                     {product.category}
                 </span>
-                <span className="px-2 py-1 text-xs rounded bg-black text-white">
+
+                <span className="px-2 py-1 text-xs rounded bg-black text-white flex items-center gap-1">
+                    <img src={checkIcon} alt="check" className="h-3 w-3" />
                     {product.availabilityStatus}
                 </span>
             </div>
@@ -32,24 +38,20 @@ export default function ProductInfo({ product }: Props) {
                     <p className="font-medium text-gray-900">Brand</p>
                     <p>{product.brand}</p>
                 </div>
+
                 <div>
                     <p className="font-medium text-gray-900">SKU</p>
                     <p>{product.sku}</p>
                 </div>
-                <div>
-                    <p className="font-medium text-gray-900">Stock</p>
-                    <p>{product.stock} units</p>
+
+                <div className="flex items-center gap-2">
+                    <img src={boxIcon} alt="box" className="h-4 w-4" />
+                    <span>{product.stock} units</span>
                 </div>
+
                 <div>
                     <p className="font-medium text-gray-900">Weight</p>
                     <p>{product.weight}g</p>
-                </div>
-                <div>
-                    <p className="font-medium text-gray-900">Dimensions</p>
-                    <p>
-                        {product.dimensions.width} × {product.dimensions.height}{" "}
-                        × {product.dimensions.depth} cm
-                    </p>
                 </div>
             </div>
 
@@ -69,9 +71,17 @@ export default function ProductInfo({ product }: Props) {
                 Order Now
             </button>
 
+            {/* Shipping */}
             <div className="flex gap-6 text-sm text-gray-500">
-                <span>🚚 Fast Shipping</span>
-                <span>🔒 Secure Payment</span>
+                <span className="flex items-center gap-2">
+                    <img src={truckIcon} alt="truck" className="h-4 w-4" />
+                    Fast Shipping
+                </span>
+
+                <span className="flex items-center gap-2">
+                    <img src={secureIcon} alt="secure" className="h-4 w-4" />
+                    Secure Payment
+                </span>
             </div>
         </div>
     );
