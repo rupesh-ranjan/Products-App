@@ -22,7 +22,6 @@ export default function Products() {
     const [selectedCategory, setSelectedCategory] = useState("all");
     const [sort, setSort] = useState("default");
 
-    // 🔁 Fetch Products
     useEffect(() => {
         try {
             setLoading(true);
@@ -49,12 +48,10 @@ export default function Products() {
         }
     }, [page, search, selectedCategory]);
 
-    //  Fetch Categories
     useEffect(() => {
         fetchCategories().then(setCategories);
     }, []);
 
-    //  Sort (client-side)
     const sortedProducts = [...products].sort((a, b) => {
         switch (sort) {
             case "price-asc":

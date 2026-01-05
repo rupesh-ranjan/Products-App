@@ -49,7 +49,6 @@ export default function Pagination({
                 className="flex items-center gap-2 text-gray-950 disabled:opacity-40"
             >
                 {" Next >"}
-                {/* <img src={arrowIcon} alt="next" className="h-4 w-4" /> */}
             </button>
         </div>
     );

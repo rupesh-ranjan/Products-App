@@ -4,9 +4,11 @@ import boxIcon from "../icons/box.svg";
 import truckIcon from "../icons/truck.svg";
 import secureIcon from "../icons/secure-payments.svg";
 import { type Product } from "../pages/ProductDetails";
+// import boxIcon from "../icons/box.svg";
 
 type Props = {
     product: Product;
+    dimensions: { width: number; height: number; depth: number };
 };
 
 export default function ProductInfo({ product }: Props) {
@@ -44,14 +46,26 @@ export default function ProductInfo({ product }: Props) {
                     <p>{product.sku}</p>
                 </div>
 
-                <div className="flex items-center gap-2">
-                    <img src={boxIcon} alt="box" className="h-4 w-4" />
+                <div>
+                    <p className="font-medium text-gray-900">Stock</p>
                     <span>{product.stock} units</span>
                 </div>
 
                 <div>
                     <p className="font-medium text-gray-900">Weight</p>
                     <p>{product.weight}g</p>
+                </div>
+
+                <div>
+                    <p className="font-medium text-gray-900">Dimensions</p>
+                    <p>
+                        {`${Math.round(
+                            product.dimensions.width
+                        )} X ${Math.round(
+                            product.dimensions.height
+                        )} X ${Math.round(product.dimensions.depth)}`}{" "}
+                        cm
+                    </p>
                 </div>
             </div>
 
@@ -67,7 +81,8 @@ export default function ProductInfo({ product }: Props) {
                 ))}
             </div>
 
-            <button className="w-full h-12 rounded-lg bg-black text-white mb-4">
+            <button className="w-full h-12 rounded-lg bg-black text-white mb-4 flex items-center justify-center gap-2">
+                <img src={boxIcon} alt="box" className="h-4 w-4" />
                 Order Now
             </button>
 
