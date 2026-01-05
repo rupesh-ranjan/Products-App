@@ -1,6 +1,6 @@
 import { useState } from "react";
 import chevronIcon from "../icons/chevron.svg";
-import { type Product } from "../pages/ProductDetails";
+import type { Product } from "../pages/ProductDetails";
 
 type Props = {
     product: Product;

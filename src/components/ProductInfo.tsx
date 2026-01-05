@@ -4,11 +4,9 @@ import boxIcon from "../icons/box.svg";
 import truckIcon from "../icons/truck.svg";
 import secureIcon from "../icons/secure-payments.svg";
 import { type Product } from "../pages/ProductDetails";
-// import boxIcon from "../icons/box.svg";
 
 type Props = {
     product: Product;
-    dimensions: { width: number; height: number; depth: number };
 };
 
 export default function ProductInfo({ product }: Props) {
