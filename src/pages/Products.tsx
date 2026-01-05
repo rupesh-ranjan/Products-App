@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
+import Pagination from "../components/Pagination";
 import {
-    fetchProducts,
     fetchCategories,
     type Product,
     type Category,
@@ -9,37 +9,53 @@ import {
 import searchIcon from "../icons/search.svg";
 import settingsIcon from "../icons/settings.svg";
 
+const LIMIT = 8;
+
 export default function Products() {
     const [products, setProducts] = useState<Product[]>([]);
     const [categories, setCategories] = useState<Category[]>([]);
+    const [total, setTotal] = useState(0);
     const [loading, setLoading] = useState(true);
 
+    const [page, setPage] = useState(1);
     const [search, setSearch] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("all");
     const [sort, setSort] = useState("default");
 
+    // 🔁 Fetch Products
     useEffect(() => {
-        Promise.all([fetchProducts(), fetchCategories()])
-            .then(([productsData, categoriesData]) => {
-                setProducts(productsData);
-                setCategories(categoriesData);
-            })
-            .finally(() => setLoading(false));
+        try {
+            setLoading(true);
+
+            const skip = (page - 1) * LIMIT;
+            let url = `https://dummyjson.com/products?limit=${LIMIT}&skip=${skip}`;
+
+            if (search) {
+                url = `https://dummyjson.com/products/search?q=${search}&limit=${LIMIT}&skip=${skip}`;
+            } else if (selectedCategory !== "all") {
+                url = `https://dummyjson.com/products/category/${selectedCategory}?limit=${LIMIT}&skip=${skip}`;
+            }
+
+            fetch(url)
+                .then((res) => res.json())
+                .then((data) => {
+                    setProducts(data.products);
+                    setTotal(data.total);
+                });
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
+    }, [page, search, selectedCategory]);
+
+    //  Fetch Categories
+    useEffect(() => {
+        fetchCategories().then(setCategories);
     }, []);
 
-    // 🔍 Search + Category filter
-    const filteredProducts = products
-        .filter((product) =>
-            product.title.toLowerCase().includes(search.toLowerCase())
-        )
-        .filter((product) =>
-            selectedCategory === "all"
-                ? true
-                : product.category === selectedCategory
-        );
-
-    // 🔃 Sorting
-    const sortedProducts = [...filteredProducts].sort((a, b) => {
+    //  Sort (client-side)
+    const sortedProducts = [...products].sort((a, b) => {
         switch (sort) {
             case "price-asc":
                 return a.price - b.price;
@@ -54,10 +70,12 @@ export default function Products() {
         }
     });
 
+    const totalPages = Math.ceil(total / LIMIT);
+
     if (loading) {
         return (
             <div className="flex justify-center items-center h-[60vh]">
-                <p className="text-gray-500">Loading products...</p>
+                Loading products...
             </div>
         );
     }
@@ -129,7 +147,8 @@ export default function Products() {
 
             {/* Result count */}
             <p className="text-sm text-gray-500 mb-6">
-                Showing {sortedProducts.length} products
+                Showing {(page - 1) * LIMIT + 1}–{Math.min(page * LIMIT, total)}{" "}
+                of {total} products
             </p>
 
             {/* Products Grid */}
@@ -146,12 +165,12 @@ export default function Products() {
                 ))}
             </div>
 
-            {/* Empty State */}
-            {sortedProducts.length === 0 && (
-                <p className="text-center text-gray-500 mt-10">
-                    No products found.
-                </p>
-            )}
+            {/* Pagination */}
+            <Pagination
+                currentPage={page}
+                totalPages={totalPages}
+                onPageChange={setPage}
+            />
         </div>
     );
 }
