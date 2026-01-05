@@ -1,10 +1,14 @@
+import { BrowserRouter, Route, Routes } from "react-router";
 import "./App.css";
 
 function App() {
     return (
-        <>
-            <h1 className="bg-blue-300">product App</h1>
-        </>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<>Product</>} />
+                <Route path="/products/:id" element={<>Prdoct Details</>} />
+            </Routes>
+        </BrowserRouter>
     );
 }
 
