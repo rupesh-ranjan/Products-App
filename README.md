@@ -1,6 +1,6 @@
 # Product Catalog – Frontend Assignment
 
-This project is a frontend implementation of a **Product Catalog & Product Details** application built as part of a time-boxed frontend assignment.
+This project is a frontend implementation of a **Product Catalog & Product Details** application built as part of a time-boxed frontend assignment for commbox.
 
 The application follows the provided Figma design and uses real data from the **DummyJSON Products API**.
 
@@ -13,8 +13,6 @@ The application follows the provided Figma design and uses real data from the **
 - **Tailwind CSS v4**
 - **React Router**
 - **Public REST API (DummyJSON)**
-
-No external UI libraries or icon libraries are used.
 
 ---
 
