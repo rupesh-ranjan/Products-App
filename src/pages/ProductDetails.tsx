@@ -100,7 +100,10 @@ export default function ProductDetails() {
 
                 <div className="space-y-4">
                     {product.reviews.map((review, index) => (
-                        <div key={index} className="border rounded-lg p-4">
+                        <div
+                            key={index}
+                            className="border rounded-lg p-4 border-gray-300"
+                        >
                             <div className="flex justify-between">
                                 <div>
                                     <p className="font-medium">

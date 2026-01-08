@@ -21,7 +21,7 @@ export default function ProductCard({
     return (
         <div
             onClick={() => navigate(`/products/${id}`)}
-            className="cursor-pointer rounded-xl border border-gray-200 p-4 transition-shadow hover:shadow-card bg-white min-h-100 flex flex-col justify-between"
+            className="cursor-pointer rounded-xl border border-gray-200 p-4 transition-shadow hover:shadow-card bg-white min-h-100 flex flex-col justify-between hover:shadow-xl"
         >
             {/* Image */}
             <div className="mb-4 h-60 rounded-lg bg-gray-100 overflow-hidden">
