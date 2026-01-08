@@ -17,7 +17,6 @@ export default function Rating({ value }: RatingProps) {
                     ★
                 </span>
             ))}
-            <span className="ml-1 text-gray-500 text-xs">({value})</span>
         </div>
     );
 }

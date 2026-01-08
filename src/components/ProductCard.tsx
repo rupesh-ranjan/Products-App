@@ -39,7 +39,12 @@ export default function ProductCard({
                 <h3 className="mb-1 text-sm font-medium">{title}</h3>
 
                 {/* Rating */}
-                <Rating value={rating} />
+                <div className="flex">
+                    <Rating value={rating} />
+                    <span className="ml-1 text-gray-500 text-xs">
+                        ({rating})
+                    </span>
+                </div>
             </div>
 
             {/* Price */}

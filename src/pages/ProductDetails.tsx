@@ -116,7 +116,11 @@ export default function ProductDetails() {
                                     <p className="text-xs text-gray-400">
                                         {new Date(
                                             review.date
-                                        ).toLocaleDateString()}
+                                        ).toLocaleDateString("en-us", {
+                                            month: "long",
+                                            day: "2-digit",
+                                            year: "numeric",
+                                        })}
                                     </p>
                                 </div>
                             </div>

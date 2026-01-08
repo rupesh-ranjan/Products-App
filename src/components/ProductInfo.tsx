@@ -28,35 +28,41 @@ export default function ProductInfo({ product }: Props) {
 
             <p className="text-gray-600 mb-3">{product.description}</p>
 
-            <Rating value={product.rating} />
+            <div className="flex items-center">
+                <Rating value={product.rating} />
+                <span className="ml-1 text-gray-500 text-xs">
+                    {product.rating} out of 5 stars
+                </span>
+            </div>
 
             <p className="text-3xl font-bold my-4">${product.price}</p>
 
             {/* Meta */}
             <div className="grid grid-cols-2 gap-y-3 text-sm text-gray-600 mb-6">
                 <div>
-                    <p className="font-medium text-gray-900">Brand</p>
-                    <p>{product.brand}</p>
+                    <p className="font-medium text-gray-500">Brand</p>
+                    <p className="text-gray-900">{product.brand}</p>
                 </div>
 
                 <div>
-                    <p className="font-medium text-gray-900">SKU</p>
-                    <p>{product.sku}</p>
+                    <p className="font-medium text-gray-500">SKU</p>
+                    <p className="text-gray-900">{product.sku}</p>
+                </div>
+
+                <div className="flex flex-col">
+                    <p className="font-medium text-gray-500">Stock</p>
+                    <span className="text-gray-900">{product.stock} units</span>
+                    <span className="text-gray-900">available</span>
                 </div>
 
                 <div>
-                    <p className="font-medium text-gray-900">Stock</p>
-                    <span>{product.stock} units</span>
+                    <p className="font-medium text-gray-500">Weight</p>
+                    <p className="text-gray-900">{product.weight}g</p>
                 </div>
 
                 <div>
-                    <p className="font-medium text-gray-900">Weight</p>
-                    <p>{product.weight}g</p>
-                </div>
-
-                <div>
-                    <p className="font-medium text-gray-900">Dimensions</p>
-                    <p>
+                    <p className="font-medium text-gray-500">Dimensions</p>
+                    <p className="text-gray-900">
                         {`${Math.round(
                             product.dimensions.width
                         )} X ${Math.round(
