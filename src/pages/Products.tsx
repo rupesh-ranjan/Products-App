@@ -80,7 +80,9 @@ export default function Products() {
     return (
         <div className="max-w-7xl mx-auto px-6 py-8">
             {/* Header */}
-            <div className="mb-6">
+            <div className="mb-6 px-2 py-4">
+                {" "}
+                {/*border will see*/}
                 <h1 className="text-2xl font-semibold">Product Catalog</h1>
                 <p className="text-gray-500 text-sm">
                     Discover our wide selection of quality products
@@ -90,7 +92,7 @@ export default function Products() {
             {/* Filters */}
             <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
                 {/* Search */}
-                <div className="relative flex-1">
+                <div className="relative flex-1 border-0 bg-gray-200 rounded-lg">
                     <img
                         src={searchIcon}
                         alt="search"
@@ -99,6 +101,7 @@ export default function Products() {
                     <input
                         type="text"
                         placeholder="Search products..."
+                        name="search input"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         className="w-full h-11 pl-10 pr-4 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-black/10"
@@ -106,7 +109,7 @@ export default function Products() {
                 </div>
 
                 {/* Category */}
-                <div className="flex items-center rounded-lg h-11 gap-2 border border-gray-200 px-4">
+                <div className="flex items-center h-11 gap-2 px-4 border-0 bg-gray-200 rounded-lg">
                     <img
                         src={settingsIcon}
                         alt="categories"
@@ -132,7 +135,8 @@ export default function Products() {
                 <select
                     value={sort}
                     onChange={(e) => setSort(e.target.value)}
-                    className="h-11 rounded-lg border border-gray-200 px-3 text-sm"
+                    name="sort"
+                    className="h-11 px-3 text-sm border-0 bg-gray-200 rounded-lg"
                 >
                     <option value="default">Sort</option>
                     <option value="newest">Newest</option>

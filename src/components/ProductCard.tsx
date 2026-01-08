@@ -21,10 +21,10 @@ export default function ProductCard({
     return (
         <div
             onClick={() => navigate(`/products/${id}`)}
-            className="cursor-pointer rounded-xl border border-gray-200 bg-white p-4 transition-shadow hover:shadow-card"
+            className="cursor-pointer rounded-xl border border-gray-200 p-4 transition-shadow hover:shadow-card bg-white min-h-100 flex flex-col justify-between"
         >
             {/* Image */}
-            <div className="mb-4 h-40 rounded-lg bg-gray-100 overflow-hidden">
+            <div className="mb-4 h-60 rounded-lg bg-gray-100 overflow-hidden">
                 {thumbnail && (
                     <img
                         src={thumbnail}
@@ -34,11 +34,13 @@ export default function ProductCard({
                 )}
             </div>
 
-            {/* Title */}
-            <h3 className="mb-1 text-sm font-medium">{title}</h3>
+            <div>
+                {/* Title */}
+                <h3 className="mb-1 text-sm font-medium">{title}</h3>
 
-            {/* Rating */}
-            <Rating value={rating} />
+                {/* Rating */}
+                <Rating value={rating} />
+            </div>
 
             {/* Price */}
             <p className="mt-2 text-lg font-semibold">${price}</p>

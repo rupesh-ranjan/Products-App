@@ -23,7 +23,6 @@ export default function ProductAccordion({ product }: Props) {
             content: product.returnPolicy,
         },
     ];
-
     return (
         <div className="mt-12">
             <h2 className="text-sm font-medium my-4">Additional Information</h2>
