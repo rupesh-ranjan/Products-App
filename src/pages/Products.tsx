@@ -132,18 +132,20 @@ export default function Products() {
                 </div>
 
                 {/* Sort */}
-                <select
-                    value={sort}
-                    onChange={(e) => setSort(e.target.value)}
-                    name="sort"
-                    className="h-11 px-3 text-sm border-0 bg-gray-200 rounded-lg"
-                >
-                    <option value="default">Sort</option>
-                    <option value="newest">Newest</option>
-                    <option value="oldest">Oldest</option>
-                    <option value="price-asc">Price: Low to High</option>
-                    <option value="price-desc">Price: High to Low</option>
-                </select>
+                <div className="flex items-center h-11 gap-2 px-4 border-0 bg-gray-200 rounded-lg">
+                    <select
+                        value={sort}
+                        onChange={(e) => setSort(e.target.value)}
+                        name="sort"
+                        className="h-11 px-3 text-sm border-0 bg-gray-200 rounded-lg flex-1"
+                    >
+                        <option value="default">Sort</option>
+                        <option value="newest">Newest</option>
+                        <option value="oldest">Oldest</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                    </select>
+                </div>
             </div>
 
             {/* Result count */}
